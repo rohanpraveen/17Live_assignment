@@ -13,10 +13,9 @@ public class Main {
             String outputPath = "src/main/resources/output.json";
 
             List<Section> sections = JsonUtil.readInput(inputPath);
-            System.out.println("✅ Input loaded! Sections found: " + sections.size());
+            System.out.println("Input loaded. Sections found: " + sections.size());
 
             Set<String> usedTop3IDs = new HashSet<>();
-
 
             for (int sectionIndex = 0; sectionIndex < sections.size(); sectionIndex++) {
                 Section section = sections.get(sectionIndex);
@@ -52,7 +51,7 @@ public class Main {
                                 streams.set(position, streams.get(j));
                                 streams.set(j, temp);
 
-                                System.out.println("🔁 Swapped duplicate in section '" + section.getSectionID()
+                                System.out.println("Swapped duplicate in section '" + section.getSectionID()
                                         + "' — replaced '" + currentID + "' with '" + candidateID + "'");
 
                                 currentID = candidateID;
@@ -62,7 +61,7 @@ public class Main {
                         }
 
                         if (!swapped) {
-                            System.out.println("⚠️ No unique swap found for '" + currentID + "' in section '"
+                            System.out.println("No unique swap found for '" + currentID + "' in section '"
                                     + section.getSectionID() + "'");
                         }
                     }
@@ -70,14 +69,14 @@ public class Main {
                     usedTop3IDs.add(currentID);
                 }
 
-                System.out.println("🎯 Final Top 3 for section '" + section.getSectionID() + "':");
+                System.out.println("Final Top 3 for section '" + section.getSectionID() + "':");
                 for (int i = 0; i < 3 && i < streams.size(); i++) {
                     System.out.println("   • " + streams.get(i).getStreamerID());
                 }
             }
 
             JsonUtil.writeFlattenedOutput(sections, outputPath);
-            System.out.println("✅ Output written to " + outputPath);
+            System.out.println("Output written to " + outputPath);
 
         } catch (Exception e) {
             e.printStackTrace();
