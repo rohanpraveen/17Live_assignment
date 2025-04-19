@@ -9,8 +9,8 @@ public class TopThreeUniquenessTest {
 
     @Test
     public void testTopThreeAreGloballyUnique() throws Exception {
-        String outputPath = "src/main/resources/output.json"; // ✅ Define your output path
-        Map<String, List<String>> output = JsonUtil.readOutput(outputPath); // ✅ Read flattened output
+        String outputPath = "src/main/resources/output.json";
+        Map<String, List<String>> output = JsonUtil.readOutput(outputPath);
 
         Set<String> usedTop3 = new HashSet<>();
 
@@ -20,7 +20,7 @@ public class TopThreeUniquenessTest {
                 String id = streamers.get(i);
                 for (String used : usedTop3) {
                     double similarity = calculateSimilarity(used, id);
-                    assertTrue(similarity < 0.9, "❌ Duplicate or similar ID found in top-3: " + id + " ~ " + used);
+                    assertTrue(similarity < 0.9, "Duplicate or similar ID found in top-3: " + id + " ~ " + used);
                 }
                 usedTop3.add(id);
             }
